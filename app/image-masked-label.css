@@ -1,0 +1,32 @@
+/* The supplied light ribbon is clipped by the glyphs, not approximated with a gradient. */
+#about { --label-ribbon: url('/ribbon-about.png'); --label-underlay: #627ca7; }
+#details { --label-ribbon: url('/ribbon-details.png'); --label-underlay: #4a80ba; }
+#packaging { --label-ribbon: url('/ribbon-packaging.png'); --label-underlay: #bf713c; }
+#scenes { --label-ribbon: url('/ribbon-scenes.png'); --label-underlay: #288b75; }
+#ip { --label-ribbon: url('/ribbon-ip.png'); --label-underlay: #ad6481; }
+
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .image-masked-label.image-masked-label {
+    width: fit-content;
+    max-width: 100%;
+    background-image: var(--label-ribbon);
+    /* Keep the dark portions of the actual photograph readable at small sizes. */
+    background-color: var(--label-underlay);
+    background-blend-mode: screen;
+    background-repeat: no-repeat;
+    background-size: 300% auto;
+    background-position: right 60%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+}
+
+@media (forced-colors: active) {
+  .image-masked-label.image-masked-label {
+    background: none;
+    -webkit-text-fill-color: CanvasText;
+    color: CanvasText;
+  }
+}
